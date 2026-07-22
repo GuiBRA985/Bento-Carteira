@@ -14,6 +14,15 @@ function renderDashboardMetrics(){
   $('#investedTotal').textContent=money(invested);
   $('#passiveTotal').textContent=money(monthly);
   $('#yieldMetric').textContent=percent(invested?monthly/invested*100:0);
+
+  const vrTransactions=state.transactions.filter(t=>(t.source||'').toLowerCase()==='vale-refeição' || (t.category||'').toLowerCase()==='vale-refeição');
+  const vrCredits=vrTransactions.filter(t=>t.type==='income').reduce((s,t)=>s+Number(t.value),0);
+  const vrExpenses=vrTransactions.filter(t=>t.type==='expense').reduce((s,t)=>s+Number(t.value),0);
+  const vrBalance=vrCredits-vrExpenses;
+  $('#vrBalance').textContent=money(vrBalance);
+  $('#vrSummary').textContent=vrTransactions.length
+    ? `${money(vrCredits)} recebidos • ${money(vrExpenses)} utilizados`
+    : 'Registre o crédito como receita e as refeições como despesas usando “Vale-refeição”.';
 }
 function renderHealth(){
   const t=getTotals();let score=0;

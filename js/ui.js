@@ -12,7 +12,14 @@ function switchSection(id){
 function fieldHtml(f){
   const cls=f.full?'form-field full':'form-field';
   if(f.type==='select'){
-    return `<div class="${cls}"><label>${f.label}</label><select name="${f.name}" required>${f.options.map(o=>`<option value="${o.value}">${o.label}</option>`).join('')}</select></div>`;
+    return `<div class="${cls}"><label>${f.label}</label><select name="${f.name}" ${f.required===false?'':'required'}>${f.options.map(o=>`<option value="${o.value}">${o.label}</option>`).join('')}</select></div>`;
+  }
+  if(f.type==='datalist'){
+    const listId=`list-${f.name}`;
+    return `<div class="${cls}"><label>${f.label}</label>
+      <input name="${f.name}" list="${listId}" type="text" ${f.placeholder?`placeholder="${f.placeholder}"`:''} ${f.required===false?'':'required'}>
+      <datalist id="${listId}">${(f.options||[]).map(o=>`<option value="${escapeHtml(o)}"></option>`).join('')}</datalist>
+    </div>`;
   }
   return `<div class="${cls}"><label>${f.label}</label><input name="${f.name}" type="${f.type||'text'}" ${f.step?`step="${f.step}"`:''} ${f.value!==undefined?`value="${f.value}"`:''} ${f.placeholder?`placeholder="${f.placeholder}"`:''} ${f.required===false?'':'required'}></div>`;
 }
