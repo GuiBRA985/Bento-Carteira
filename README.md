@@ -43,3 +43,13 @@ Base pública e modular do Carteira Bento.
 ## Próximo passo
 
 Conectar o botão Criar usuário ao Supabase e migrar os dados locais para a conta criada.
+
+
+## Novidades da v3
+
+- Categorias digitadas ficam memorizadas para lançamentos futuros.
+- Campo de conta, cartão ou benefício usado no pagamento.
+- Vale-refeição pode ser lançado como receita.
+- Refeições podem ser lançadas como despesas pagas com Vale-refeição.
+- O painel calcula automaticamente o saldo disponível do vale-refeição.
+- Migração automática dos dados salvos na versão 2.
