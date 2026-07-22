@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Carteira Bento — seu painel pessoal para organizar gastos, patrimônio, investimentos e metas." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Carteira Bento — organize sua vida financeira em um só lugar.">
   <title>Carteira Bento</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
-      <a class="brand" href="#">
+      <a href="#" class="brand" data-section-jump="dashboard">
         <div class="brand-mark">B</div>
         <div>
           <strong>Carteira Bento</strong>
@@ -22,17 +22,21 @@
       </a>
 
       <nav class="nav">
-        <button class="nav-item active" data-section="dashboard"><span>⌂</span> Visão geral</button>
-        <button class="nav-item" data-section="transactions"><span>↕</span> Lançamentos</button>
-        <button class="nav-item" data-section="assets"><span>◫</span> Patrimônio</button>
-        <button class="nav-item" data-section="investments"><span>↗</span> Investimentos</button>
-        <button class="nav-item" data-section="goals"><span>◎</span> Metas</button>
+        <button class="nav-item active" data-section="dashboard">⌂ <span>Visão geral</span></button>
+        <button class="nav-item" data-section="transactions">↕ <span>Lançamentos</span></button>
+        <button class="nav-item" data-section="assets">◫ <span>Patrimônio</span></button>
+        <button class="nav-item" data-section="investments">↗ <span>Investimentos</span></button>
+        <button class="nav-item" data-section="goals">◎ <span>Metas</span></button>
       </nav>
 
       <div class="sidebar-card">
-        <span class="eyebrow">Dados locais</span>
-        <p>Seus dados ficam salvos apenas neste navegador.</p>
+        <span class="eyebrow">DADOS LOCAIS</span>
+        <p>Seus registros ficam salvos neste navegador.</p>
         <button class="ghost full" id="exportBtn">Exportar backup</button>
+        <label class="ghost full file-label">
+          Importar backup
+          <input type="file" id="importInput" accept=".json">
+        </label>
       </div>
 
       <div class="sidebar-footer">
@@ -43,10 +47,12 @@
 
     <main class="main">
       <header class="topbar">
-        <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
-        <div>
-          <p class="eyebrow">PAINEL FINANCEIRO</p>
-          <h1 id="pageTitle">Visão geral</h1>
+        <div class="topbar-left">
+          <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
+          <div>
+            <p class="eyebrow">PAINEL FINANCEIRO</p>
+            <h1 id="pageTitle">Visão geral</h1>
+          </div>
         </div>
         <div class="top-actions">
           <button class="ghost" id="clearBtn">Apagar dados</button>
@@ -55,7 +61,7 @@
         </div>
       </header>
 
-      <section class="content-section active" id="dashboard">
+      <section id="dashboard" class="content-section active">
         <div class="hero">
           <div>
             <p class="eyebrow">BEM-VINDO À SUA CARTEIRA</p>
@@ -70,80 +76,33 @@
         </div>
 
         <div class="metrics-grid">
-          <article class="metric-card">
-            <div class="metric-icon income">↗</div>
-            <div>
-              <span>Receitas do mês</span>
-              <strong id="incomeMetric">R$ 0,00</strong>
-              <small>Entradas registradas</small>
-            </div>
-          </article>
-          <article class="metric-card">
-            <div class="metric-icon expense">↘</div>
-            <div>
-              <span>Despesas do mês</span>
-              <strong id="expenseMetric">R$ 0,00</strong>
-              <small>Saídas registradas</small>
-            </div>
-          </article>
-          <article class="metric-card">
-            <div class="metric-icon passive">◆</div>
-            <div>
-              <span>Renda passiva</span>
-              <strong id="passiveMetric">R$ 0,00</strong>
-              <small>Dividendos, juros e aluguéis</small>
-            </div>
-          </article>
-          <article class="metric-card">
-            <div class="metric-icon balance">◉</div>
-            <div>
-              <span>Saldo do mês</span>
-              <strong id="balanceMetric">R$ 0,00</strong>
-              <small>Receitas menos despesas</small>
-            </div>
-          </article>
+          <article class="metric-card"><div class="metric-icon income">↗</div><div><span>Receitas do mês</span><strong id="incomeMetric">R$ 0,00</strong><small>Entradas registradas</small></div></article>
+          <article class="metric-card"><div class="metric-icon expense">↘</div><div><span>Despesas do mês</span><strong id="expenseMetric">R$ 0,00</strong><small>Saídas registradas</small></div></article>
+          <article class="metric-card"><div class="metric-icon passive">◆</div><div><span>Renda passiva</span><strong id="passiveMetric">R$ 0,00</strong><small>Dividendos, juros e aluguéis</small></div></article>
+          <article class="metric-card"><div class="metric-icon balance">◉</div><div><span>Saldo do mês</span><strong id="balanceMetric">R$ 0,00</strong><small>Receitas menos despesas</small></div></article>
         </div>
 
         <div class="dashboard-grid">
           <article class="panel chart-panel">
             <div class="panel-header">
-              <div>
-                <span class="eyebrow">FLUXO FINANCEIRO</span>
-                <h3>Receitas e despesas</h3>
-              </div>
-              <select id="chartPeriod">
-                <option value="6">Últimos 6 meses</option>
-                <option value="12">Últimos 12 meses</option>
-              </select>
+              <div><span class="eyebrow">FLUXO FINANCEIRO</span><h3>Receitas e despesas</h3></div>
+              <select id="chartPeriod"><option value="6">Últimos 6 meses</option><option value="12">Últimos 12 meses</option></select>
             </div>
-            <div class="chart-wrap">
-              <canvas id="cashflowChart" width="900" height="330"></canvas>
-            </div>
+            <div class="chart-wrap"><canvas id="cashflowChart"></canvas></div>
           </article>
 
           <article class="panel health-panel">
             <div class="panel-header">
-              <div>
-                <span class="eyebrow">SAÚDE FINANCEIRA</span>
-                <h3>Seu momento</h3>
-              </div>
+              <div><span class="eyebrow">SAÚDE FINANCEIRA</span><h3>Seu momento</h3></div>
               <span class="score" id="healthScore">0</span>
             </div>
-            <div class="health-ring" id="healthRing">
-              <div>
-                <strong id="healthPercent">0%</strong>
-                <span>organizado</span>
-              </div>
-            </div>
-            <p id="healthMessage">Adicione receitas, despesas, patrimônio e metas para receber uma leitura inicial.</p>
+            <div class="health-ring" id="healthRing"><div><strong id="healthPercent">0%</strong><span>organizado</span></div></div>
+            <p id="healthMessage">Adicione seus dados para receber uma leitura inicial.</p>
           </article>
 
           <article class="panel">
             <div class="panel-header">
-              <div>
-                <span class="eyebrow">ÚLTIMOS LANÇAMENTOS</span>
-                <h3>Movimentações recentes</h3>
-              </div>
+              <div><span class="eyebrow">ÚLTIMOS LANÇAMENTOS</span><h3>Movimentações recentes</h3></div>
               <button class="text-btn" data-section-jump="transactions">Ver todos</button>
             </div>
             <div class="list" id="recentTransactions"></div>
@@ -151,10 +110,7 @@
 
           <article class="panel">
             <div class="panel-header">
-              <div>
-                <span class="eyebrow">COMPOSIÇÃO</span>
-                <h3>Seu patrimônio</h3>
-              </div>
+              <div><span class="eyebrow">COMPOSIÇÃO</span><h3>Seu patrimônio</h3></div>
               <button class="text-btn" data-section-jump="assets">Gerenciar</button>
             </div>
             <div class="asset-summary" id="assetSummary"></div>
@@ -162,12 +118,9 @@
         </div>
       </section>
 
-      <section class="content-section" id="transactions">
+      <section id="transactions" class="content-section">
         <div class="section-toolbar">
-          <div>
-            <p class="eyebrow">MOVIMENTAÇÕES</p>
-            <h2>Receitas e despesas</h2>
-          </div>
+          <div><p class="eyebrow">MOVIMENTAÇÕES</p><h2>Receitas e despesas</h2></div>
           <div class="filters">
             <select id="transactionFilter">
               <option value="all">Todos</option>
@@ -181,28 +134,16 @@
         <article class="panel">
           <div class="table-wrap">
             <table>
-              <thead>
-                <tr>
-                  <th>Descrição</th>
-                  <th>Categoria</th>
-                  <th>Data</th>
-                  <th>Tipo</th>
-                  <th>Valor</th>
-                  <th></th>
-                </tr>
-              </thead>
+              <thead><tr><th>Descrição</th><th>Categoria</th><th>Data</th><th>Tipo</th><th>Valor</th><th></th></tr></thead>
               <tbody id="transactionsTable"></tbody>
             </table>
           </div>
         </article>
       </section>
 
-      <section class="content-section" id="assets">
+      <section id="assets" class="content-section">
         <div class="section-toolbar">
-          <div>
-            <p class="eyebrow">PATRIMÔNIO</p>
-            <h2>O que você possui e deve</h2>
-          </div>
+          <div><p class="eyebrow">PATRIMÔNIO</p><h2>O que você possui e deve</h2></div>
           <button class="primary" id="newAssetBtn">+ Adicionar item</button>
         </div>
         <div class="metrics-grid compact">
@@ -213,12 +154,9 @@
         <div class="cards-grid" id="assetsGrid"></div>
       </section>
 
-      <section class="content-section" id="investments">
+      <section id="investments" class="content-section">
         <div class="section-toolbar">
-          <div>
-            <p class="eyebrow">INVESTIMENTOS</p>
-            <h2>Carteira e renda passiva</h2>
-          </div>
+          <div><p class="eyebrow">INVESTIMENTOS</p><h2>Carteira e renda passiva</h2></div>
           <button class="primary" id="newInvestmentBtn">+ Adicionar investimento</button>
         </div>
         <div class="metrics-grid compact">
@@ -229,12 +167,9 @@
         <div class="cards-grid" id="investmentsGrid"></div>
       </section>
 
-      <section class="content-section" id="goals">
+      <section id="goals" class="content-section">
         <div class="section-toolbar">
-          <div>
-            <p class="eyebrow">METAS</p>
-            <h2>Transforme planos em números</h2>
-          </div>
+          <div><p class="eyebrow">METAS</p><h2>Transforme planos em números</h2></div>
           <button class="primary" id="newGoalBtn">+ Criar meta</button>
         </div>
         <div class="cards-grid goals-grid" id="goalsGrid"></div>
@@ -243,12 +178,9 @@
   </div>
 
   <div class="modal-backdrop" id="modalBackdrop">
-    <div class="modal" id="modal">
+    <div class="modal">
       <div class="modal-header">
-        <div>
-          <p class="eyebrow" id="modalEyebrow">NOVO REGISTRO</p>
-          <h2 id="modalTitle">Adicionar</h2>
-        </div>
+        <div><p class="eyebrow" id="modalEyebrow">NOVO REGISTRO</p><h2 id="modalTitle">Adicionar</h2></div>
         <button class="close-btn" id="closeModal">×</button>
       </div>
       <form id="dynamicForm"></form>
@@ -257,6 +189,14 @@
 
   <div class="toast" id="toast"></div>
 
-  <script src="app.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/transactions.js"></script>
+  <script src="js/assets.js"></script>
+  <script src="js/investments.js"></script>
+  <script src="js/goals.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

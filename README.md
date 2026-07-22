@@ -1,8 +1,22 @@
-# Carteira Bento — Versão 1
+# Carteira Bento v2
 
-Primeira versão pública e sem login do **Carteira Bento**.
+Base pública e modular do Carteira Bento.
 
-## Recursos incluídos
+## Estrutura
+
+- `index.html`
+- `css/style.css`
+- `js/storage.js`
+- `js/utils.js`
+- `js/ui.js`
+- `js/transactions.js`
+- `js/assets.js`
+- `js/investments.js`
+- `js/goals.js`
+- `js/dashboard.js`
+- `js/app.js`
+
+## Funcionalidades
 
 - Dashboard financeiro
 - Receitas, despesas e renda passiva
@@ -11,29 +25,21 @@ Primeira versão pública e sem login do **Carteira Bento**.
 - Metas financeiras
 - Indicador de saúde financeira
 - Gráfico de fluxo financeiro
-- Salvamento automático no navegador
-- Exportação de backup em JSON
-- Botão para apagar todos os dados
-- Tela demonstrativa para criação de usuário
-- Layout responsivo para celular e computador
+- Salvamento automático com localStorage
+- Exportação e importação de backup JSON
+- Exclusão completa dos dados
+- Layout responsivo
+- Base pronta para futura integração com Supabase
 
-## Como publicar no GitHub Pages
+## Publicação no GitHub Pages
 
-1. Crie um repositório no GitHub.
-2. Envie os arquivos `index.html`, `styles.css` e `app.js`.
-3. Vá em **Settings → Pages**.
-4. Em **Source**, escolha `Deploy from a branch`.
-5. Selecione a branch `main` e a pasta `/root`.
+1. Crie um repositório.
+2. Envie todo o conteúdo mantendo as pastas.
+3. Vá em `Settings > Pages`.
+4. Selecione `Deploy from a branch`.
+5. Escolha `main` e `/root`.
 6. Salve.
 
-## Observação importante
+## Próximo passo
 
-Os dados ficam armazenados apenas no navegador usando `localStorage`.
-
-Na próxima etapa, o botão **Criar usuário** poderá ser conectado ao Supabase para:
-
-- salvar os dados na nuvem;
-- sincronizar entre aparelhos;
-- manter histórico;
-- recuperar senha;
-- migrar automaticamente os dados locais após o cadastro.
+Conectar o botão Criar usuário ao Supabase e migrar os dados locais para a conta criada.
